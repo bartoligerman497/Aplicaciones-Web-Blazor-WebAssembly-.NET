@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "axwKvZQuQIB/5dR+pW1LA3nemfFu6NzCMitHyb098lz3xSa11BoecVhOY6l9AiSgAZ1zFBGx4brSAuQFAIikUQ==",
+  "dgSpecHash": "/77ceTU9Jmr6wG9nduJHABuLNEYh0le/6a0uIPg+Wr943GN0/IRPSQRHyziylW9kqW0pDOxQm6W6NOiJ420FtA==",
   "success": true,
   "projectFilePath": "D:\\Cosas\\Mi Unidad\\Platzi\\Curso-Aplicaciones-Web-Blazor-WebAssembly-.NET-Platzi\\BlazorAppVisualStudio\\BlazorAppVisualStudio\\BlazorAppVisualStudio.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\German\\.nuget\\packages\\blazored.toast\\4.1.0\\blazored.toast.4.1.0.nupkg.sha512",
     "C:\\Users\\German\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.23\\microsoft.aspnetcore.authorization.6.0.23.nupkg.sha512",
     "C:\\Users\\German\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.23\\microsoft.aspnetcore.components.6.0.23.nupkg.sha512",
     "C:\\Users\\German\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\6.0.23\\microsoft.aspnetcore.components.analyzers.6.0.23.nupkg.sha512",
