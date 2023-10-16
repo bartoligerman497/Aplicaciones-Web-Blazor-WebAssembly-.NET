@@ -1,0 +1,95 @@
+﻿@using BlazorAppVisualStudio.Models;
+@using BlazorAppVisualStudio.Services;
+
+@page "/editproduct/{productIdParameter}"
+
+@inject IProductService productService
+@inject ICategoryService categoryService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit Product</PageTitle>
+
+<Title TitleProp="Edit Product"/>
+
+<button class="btn btn-dark" @onclick="GoToProducts">Go to back products</button>
+
+<EditForm Model="@product" OnSubmit="@Save">
+    <div class="row">
+        <div class="col-8 form-group">
+            <label for="title"class="col-form-label">Title</label>
+            <InputText class="form-control" id="title" @bind-Value="product.Title" required/>
+        </div>
+        <div class="col form-group">
+            <label for="price"class="col-form-label">Price</label>
+            <InputNumber class="form-control" id="price" @bind-Value="product.Price" min="0" required/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col form-group">
+            <label for="category"class="col-form-label">Category</label>
+            <InputSelect class="form-control" id="category" @bind-Value="product.CategoryId" required>
+                <option>Select Category...</option>
+                @foreach (var category in categories)
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="col form-group">
+            <label for="image"class="col-form-label">Image (URL)</label>
+            <InputText class="form-control" id="image" @bind-Value="product.Image" required />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description"class="col-form-label">Description</label>
+        <InputTextArea class="form-control" id="description" @bind-Value="product.Description" required />
+    </div>
+    <hr />
+    <button class="btn btn-primary" type="submit">Save</button>
+</EditForm>
+
+@code {
+    private Product product = new();
+    private List<Category> categories { get; set; } = new List<Category>();
+    [Parameter]
+    public string productIdParameter { get; set; } = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+         await GetCategories();
+         await GetProduct(int.Parse(productIdParameter));
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        if (parameters.TryGetValue<string>(nameof(productIdParameter), out var value))
+        {
+            productIdParameter = value ?? productIdParameter;
+        }
+        await base.SetParametersAsync(parameters);
+    }
+
+    private void GoToProducts()
+    {
+        NavigationManager.NavigateTo("/product");
+    }
+
+    private async Task GetCategories()
+    {
+        categories = await categoryService.Get() ?? categories;
+    }
+
+    private async Task GetProduct(int productId)
+    {
+        product = await productService.Get(productId) ?? product;
+        product.Image = product.Images[0] ?? "";
+        product.CategoryId = product.Category.Id;
+    }
+
+    private async Task Save()
+    {
+        product.Images = new string[1] { product.Image };
+        await productService.Update(product);
+        GoToProducts();
+    }
+}
