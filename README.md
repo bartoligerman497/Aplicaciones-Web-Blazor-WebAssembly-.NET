@@ -4,3 +4,5 @@ https://github.com/platzi/curso-aplicaciones-web-blazor/tree/1-ciclodevidayparam
 https://platzi.com/cursos/blazor-webassembly/
 
 https://fakeapi.platzi.com/en/rest/products
+
+https://github.com/Blazored/Toast#blazor-webassembly
